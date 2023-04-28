@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ListActivity from "../Slave/ListActivity";
 import AddTask from "../Slave/AddTask";
 import RemoveAll from "../Slave/RemoveAll";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   // ARRAY
@@ -15,7 +16,7 @@ function App() {
 
   // CREARE TASK
   const addTask = (newTask) => {
-    const task = { id: data.length + 1, name: newTask, completed: false };
+    const task = { id: uuidv4(), name: newTask, completed: false };
     setData([...data, task]);
   };
 
@@ -31,9 +32,9 @@ function App() {
   function getLocalData() {
     const data = localStorage.getItem('data');
     return data ? JSON.parse(data) : [
-      { id: 1, name: "Attività 1", completed: false },
-      { id: 2, name: "Attività 2", completed: false },
-      { id: 3, name: "Attività 3", completed: false }
+      { id: uuidv4(), name: "Attività 1", completed: false },
+      { id: uuidv4(), name: "Attività 2", completed: false },
+      { id: uuidv4(), name: "Attività 3", completed: false }
     ];
   }
 
