@@ -4,8 +4,8 @@ import AddTask from "../Slave/AddTask";
 import RemoveAll from "../Slave/RemoveAll";
 
 function App() {
+  // ARRAY
   const [data, setData] = useState(getLocalData());
-
 
   // RIMUOVERE TASK
   const removeItem = (id) => {
@@ -13,13 +13,11 @@ function App() {
     setData(updatedData);
   };
 
-
   // CREARE TASK
   const addTask = (newTask) => {
     const task = { id: data.length + 1, name: newTask, completed: false };
     setData([...data, task]);
   };
-
 
   // SALVARE I DATI
   useEffect(() => {
@@ -39,18 +37,18 @@ function App() {
     ];
   }
 
+  // ELIMINARE TUTTI I DATI
+  const removeAll = () => {
+    setData([]);
+  }
 
-
-  
   return (
     <div>
       <ListActivity data={data} onRemove={removeItem} />
       <AddTask onAddTask={addTask} data={data} />
-      <RemoveAll />
+      <RemoveAll destroyData={removeAll} />
     </div>
   );
 }
 
 export default App;
-
-

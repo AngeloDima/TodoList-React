@@ -1,8 +1,14 @@
 import React from 'react'
 
-const RemoveAll = () => {
+const RemoveAll = ({ destroyData }) => {
+  const Bye = () => {
+    destroyData();
+  };
+
   return (
-    <div>RemoveAll</div>
+    <div>
+        <button onClick={Bye} >BOOM</button>
+    </div>
   )
 }
 
