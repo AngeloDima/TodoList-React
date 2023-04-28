@@ -3,11 +3,20 @@ import Checkbox from '@mui/material/Checkbox';
 
 const ListActivity = (props) => {
   const [checkedList, setCheckedList] = React.useState(props.activityList.map(() => false));
+  const [selectedList, setSelectedList] = React.useState([]);
 
   const handleChange = (event, index) => {
     const newCheckedList = [...checkedList];
     newCheckedList[index] = event.target.checked;
     setCheckedList(newCheckedList);
+
+    if (event.target.checked) {
+      const newSelectedList = [...selectedList, props.activityList[index]];
+      setSelectedList(newSelectedList);
+    } else {
+      const newSelectedList = selectedList.filter((item) => item.id !== props.activityList[index].id);
+      setSelectedList(newSelectedList);
+    }
   };
 
   return (
@@ -25,6 +34,20 @@ const ListActivity = (props) => {
           </li>
         ))}
       </ul>
+
+        
+
+      <h2>Selected activities:</h2>
+      <ul>
+        {selectedList.map((activity) => (
+          <li key={activity.id}>
+            {activity.title}
+          </li>
+        ))}
+      </ul>
+
+
+      
     </div>
   );
 };
