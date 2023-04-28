@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
 import ListActivity from '../Slave/ListActivity';
+import React, { useState } from 'react'
+
 function App() {
-  const [activityList, setActivityList] = useState([
-    { id: 1, name: 'Activity 1', completed: false },
-    { id: 2, name: 'Activity 2', completed: true },
-    { id: 3, name: 'Activity 3', completed: false },
+
+  const [data, setData] = useState([
+    {id: 1, name: "Angelo", completed: false},
+    {id: 2, name: "Angelo", completed: false},
+    {id: 3, name: "Angelo", completed: false}
   ]);
 
-  const handleToggleActivity = (updatedActivityList) => {
-    setActivityList(updatedActivityList);
-  };
-
-  const handleDeleteActivity = (updatedActivityList) => {
-    setActivityList(updatedActivityList);
-  };
+  const removeItem = (id) => {
+    const updatedData = data.filter(item => item.id !== id);
+    setData(updatedData);
+  }
 
   return (
     <div className="App">
-      <ListActivity
-        activityList={activityList}
-        onToggleActivity={handleToggleActivity}
-        onDeleteActivity={handleDeleteActivity}
-      />
+      <ListActivity data={data} onRemove={removeItem} />
     </div>
   );
 }
