@@ -5,10 +5,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-
-export default function CheckboxList({ activityList }) {
-  const [checked, setChecked] = React.useState([0]);
+export default function CheckboxList({ activityList, onRemove }) {
+  const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -23,6 +24,11 @@ export default function CheckboxList({ activityList }) {
     setChecked(newChecked);
   };
 
+  const removeItem = (itemID) => {
+    onRemove(itemID);
+    setChecked(checked.filter(id => id !== itemID));
+  }
+
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
       {activityList.map((item) => {
@@ -36,6 +42,7 @@ export default function CheckboxList({ activityList }) {
             <ListItemButton role={undefined} onClick={handleToggle(item.id)} dense  >
               <ListItemIcon>
                 <Checkbox
+                  color='success'
                   edge="start"
                   checked={checked.indexOf(item.id) !== -1}
                   tabIndex={-1}
@@ -45,6 +52,9 @@ export default function CheckboxList({ activityList }) {
               </ListItemIcon>
               <ListItemText id={labelId} primary={item.title} />
             </ListItemButton>
+            <IconButton aria-label="delete" onClick={() => removeItem(item.id)}>
+              <DeleteIcon />
+            </IconButton>
           </ListItem>
         );
       })}
