@@ -1,28 +1,27 @@
+import React, { useState } from 'react';
 import ListActivity from '../Slave/ListActivity';
-import React, { useState, useEffect } from 'react'
-
 function App() {
+  const [activityList, setActivityList] = useState([
+    { id: 1, name: 'Activity 1', completed: false },
+    { id: 2, name: 'Activity 2', completed: true },
+    { id: 3, name: 'Activity 3', completed: false },
+  ]);
 
-  const [activity, setActivity] = useState([])
-  
+  const handleToggleActivity = (updatedActivityList) => {
+    setActivityList(updatedActivityList);
+  };
 
-  const removeItem = (itemID) => {
-    setActivity(activity.filter(item => item.id !== itemID));
-  }
-
-  
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => response.json())
-      .then((activity) => setActivity(activity.slice(0, 5)))
-      .catch((error) => console.log(error))
-  }, [])
-
-  console.log(activity)
+  const handleDeleteActivity = (updatedActivityList) => {
+    setActivityList(updatedActivityList);
+  };
 
   return (
     <div className="App">
-      <ListActivity activityList={activity} onRemove={removeItem} />
+      <ListActivity
+        activityList={activityList}
+        onToggleActivity={handleToggleActivity}
+        onDeleteActivity={handleDeleteActivity}
+      />
     </div>
   );
 }
