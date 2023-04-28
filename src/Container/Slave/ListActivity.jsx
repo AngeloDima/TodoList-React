@@ -1,28 +1,47 @@
-import './list.css'
-
-import React from 'react'
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
+import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBox from './CheckBox';
-const ListActivity = (props) => {
+
+const Demo = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
+
+export default function InteractiveList(props) {
   return (
-    <div>
-      <ul>
-        {props.data.map(item => (
-          <li key={item.id}>
-            <CheckBox check={item.id} />
-            {item.name}
-            <button onClick={() => props.onRemove(item.id)}>Remove</button>
-
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+    <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Demo>
+            <List>
+              {props.data.map((item) => (
+                <ListItem key={item.id} secondaryAction={
+                  <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon onClick={() => props.onRemove(item.id)} />
+                  </IconButton>
+                }>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <CheckBox check={item.id} />
+                  <ListItemText primary={item.name} />
+                </ListItem>
+              ))}
+            </List>
+          </Demo>
+        </Grid>
+      </Grid>
+    </Box>
+  );
 }
-
-export default ListActivity;
-
-
-
-
-
-
