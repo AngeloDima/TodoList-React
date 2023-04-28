@@ -8,7 +8,7 @@ const ListActivity = (props) => {
       <ul>
         {props.data.map(item => (
           <li key={item.id}>
-            <CheckBox />
+            <CheckBox check={item.id} />
             {item.name}
             <button onClick={() => props.onRemove(item.id)}>Remove</button>
 
@@ -20,3 +20,5 @@ const ListActivity = (props) => {
 }
 
 export default ListActivity;
+
+
