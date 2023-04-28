@@ -1,58 +1,53 @@
-import React from 'react';
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 
 
+export default function CheckboxList({ activityList }) {
+  const [checked, setChecked] = React.useState([0]);
 
-const ListActivity = (props) => {
-  const [checkedList, setCheckedList] = React.useState(props.activityList.map(() => false));
-  const [selectedList, setSelectedList] = React.useState([]);
+  const handleToggle = (value) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
 
-  const handleChange = (event, index) => {
-    const newCheckedList = [...checkedList];
-    newCheckedList[index] = event.target.checked;
-    setCheckedList(newCheckedList);
-
-    if (event.target.checked) {
-      const newSelectedList = [...selectedList, props.activityList[index]];
-      setSelectedList(newSelectedList);
+    if (currentIndex === -1) {
+      newChecked.push(value);
     } else {
-      const newSelectedList = selectedList.filter((item) => item.id !== props.activityList[index].id);
-      setSelectedList(newSelectedList);
+      newChecked.splice(currentIndex, 1);
     }
+
+    setChecked(newChecked);
   };
 
   return (
-    <div>
-      <ul>
-        {props.activityList.map((activity, index) => (
-          <li key={activity.id}>
-            {activity.title}
+    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+      {activityList.map((item) => {
+        const labelId = `checkbox-list-label-${item.id}`;
 
-            <Checkbox
-              color="success"
-              checked={checkedList[index]}
-              onChange={(event) => handleChange(event, index)}
-              inputProps={{ 'aria-label': 'controlled' }}
-            />
-          </li>
-        ))}
-      </ul>
+        return (
+          <ListItem
+            key={item.id}
 
-        
-
-      <h2>Selected activities:</h2>
-      <ul>
-        {selectedList.map((activity) => (
-          <li key={activity.id}>
-            {activity.title}
-          </li>
-        ))}
-      </ul>
-
-
-      
-    </div>
+          >
+            <ListItemButton role={undefined} onClick={handleToggle(item.id)} dense  >
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={checked.indexOf(item.id) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={item.title} />
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
   );
-};
-
-export default ListActivity;
+}
