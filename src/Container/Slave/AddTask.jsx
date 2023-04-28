@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 export default function BasicTextFields(props) {
 
@@ -27,7 +29,9 @@ export default function BasicTextFields(props) {
     >
       
       <TextField id="standard-basic" label="Standard" variant="standard" value={newTask} onChange={handleTaskChange} />
-      <button onClick={handleAddTask}>Aggiungi Attività</button>
+      <Stack spacing={2} direction="row">
+        <Button variant="outlined" onClick={handleAddTask}>Outlined</Button>
+      </Stack>
     </Box>
   );
 }
