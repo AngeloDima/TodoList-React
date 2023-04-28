@@ -1,6 +1,8 @@
 import React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
+
+
 const ListActivity = (props) => {
   const [checkedList, setCheckedList] = React.useState(props.activityList.map(() => false));
   const [selectedList, setSelectedList] = React.useState([]);
@@ -27,6 +29,7 @@ const ListActivity = (props) => {
             {activity.title}
 
             <Checkbox
+              color="success"
               checked={checkedList[index]}
               onChange={(event) => handleChange(event, index)}
               inputProps={{ 'aria-label': 'controlled' }}
