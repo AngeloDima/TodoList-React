@@ -1,28 +1,15 @@
-import React, { useState } from "react";
+import React from 'react'
 
-const AddTask = (props) => {
-  const [newTask, setNewTask] = useState("");
-
-  const handleTaskChange = (event) => {
-    setNewTask(event.target.value);
+const RemoveAll = ({ destroyData }) => {
+  const Bye = () => {
+    destroyData();
   };
 
-  const handleAddTask = () => {
-    props.onAddTask(newTask);
-    setNewTask("");
-  };
-
-
-
-
-
-  
   return (
     <div>
-      <input type="text" value={newTask} onChange={handleTaskChange} />
-      <button onClick={handleAddTask}>Aggiungi Attività</button>
+        <button onClick={Bye} >BOOM</button>
     </div>
-  );
-};
+  )
+}
 
-export default AddTask;
+export default RemoveAll
