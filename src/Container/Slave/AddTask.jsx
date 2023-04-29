@@ -28,9 +28,10 @@ export default function BasicTextFields(props) {
       autoComplete="off"
     >
       
-      <TextField id="standard-basic" label="Standard" variant="standard" value={newTask} onChange={handleTaskChange} />
+      <TextField id="standard-basic" label="Nuova Task" variant="standard" value={newTask} onChange={handleTaskChange} />
+      
       <Stack spacing={2} direction="row">
-        <Button variant="outlined" onClick={handleAddTask}>Outlined</Button>
+        <Button variant="outlined" onClick={handleAddTask}>Aggiungi</Button>
       </Stack>
     </Box>
   );

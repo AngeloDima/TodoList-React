@@ -11,9 +11,9 @@ const RemoveAll = ({ destroyData }) => {
   return (
     <div>
       <Stack spacing={2} direction="row">
-      <Button variant="contained" onClick={Bye} style={{ backgroundColor: "red", color: "white" }}>
-      Destroy Data
-    </Button>
+        <Button variant="contained" onClick={Bye} style={{ backgroundColor: "red", color: "white" }}>
+          Cancella tutto
+        </Button>
      </Stack>
     </div>
   )

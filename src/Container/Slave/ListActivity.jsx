@@ -24,19 +24,18 @@ export default function InteractiveList(props) {
           <Demo>
             <List>
               {props.data.map((item) => (
+
                 <ListItem key={item.id} secondaryAction={
                   <IconButton edge="end" aria-label="delete">
                     <DeleteIcon onClick={() => props.onRemove(item.id)} />
                   </IconButton>
                 }>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
+
+
                   <CheckBox check={item.id} />
                   <ListItemText primary={item.name} />
                 </ListItem>
+
               ))}
             </List>
           </Demo>
