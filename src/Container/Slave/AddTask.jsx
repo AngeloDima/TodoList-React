@@ -53,7 +53,7 @@ export default function ValidationTextFields(props) {
             width: '95%' // Aggiunto per avere la stessa larghezza del bottone nell'altro componente
           }}
          >
-         Aggiungi
+         Aggiungii
         </Button>
 
         </Stack>
