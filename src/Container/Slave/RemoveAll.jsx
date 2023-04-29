@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from "@mui/material/Grid";
 
+
 const RemoveAll = ({ destroyData }) => {
   const Bye = () => {
     destroyData();
@@ -12,15 +13,22 @@ const RemoveAll = ({ destroyData }) => {
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={11} md={10}>
-        <Box sx={{ width: '100%' }}>
-          <Stack sx={{ width: '90%' }}>
-            <Button
+        <Box sx={{ width: '82%' }}>
+          <Stack sx={{ width: '100%' }}>
+          <Button id="abso"
               variant="contained"
               onClick={Bye}
-              sx={{ backgroundColor: 'red', color: 'white' }}
-            >
+              sx={{
+                backgroundColor: 'red',
+                color: 'white',
+                margin: '10px 10px',
+                justifyContent: 'center',
+                width: '100%' // Aggiunto per avere la stessa larghezza del bottone nell'altro componente
+              }}
+              >
               Cancella tutto
             </Button>
+
           </Stack>
         </Box>
       </Grid>
@@ -29,3 +37,5 @@ const RemoveAll = ({ destroyData }) => {
 };
 
 export default RemoveAll;
+
+

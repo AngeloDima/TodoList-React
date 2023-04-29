@@ -1,0 +1,14 @@
+
+
+
+
+
+@media screen and (max-width: 420px){
+    #abso{
+        position: unset;
+    }
+
+    #position{
+        width: 100%;
+    }
+}

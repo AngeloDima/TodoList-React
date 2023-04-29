@@ -4,6 +4,8 @@ import AddTask from "../Slave/AddTask";
 import RemoveAll from "../Slave/RemoveAll";
 import { v4 as uuidv4 } from 'uuid';
 
+
+
 function App() {
   // ARRAY
   const [data, setData] = useState(getLocalData());
@@ -46,8 +48,8 @@ function App() {
   return (
     <div>
       <ListActivity data={data} onRemove={removeItem} />
-      <AddTask onAddTask={addTask} data={data} />
-      <RemoveAll destroyData={removeAll} />
+        <AddTask onAddTask={addTask} data={data} />
+        <RemoveAll destroyData={removeAll} />
     </div>
   );
 }

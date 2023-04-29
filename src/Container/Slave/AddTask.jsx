@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
+
 export default function ValidationTextFields(props) {
   const [newTask, setNewTask] = useState("");
   const [error, setError] = useState(false);
@@ -30,7 +31,7 @@ export default function ValidationTextFields(props) {
       <Box
         component="form"
         sx={{
-          width: '80%', // Imposta la larghezza del Box a 90% della larghezza del parent
+          width: '86%', // Imposta la larghezza del Box a 90% della larghezza del parent
           '& > :not(style)': { m: 1, width: '100%' }, // Imposta la larghezza dei figli a 100%
         }}
         noValidate
@@ -45,18 +46,22 @@ export default function ValidationTextFields(props) {
           error={error}
           helperText={error ? "Non puoi lasciare il campo vuoto" : ""}
         />
-        <Stack spacing={2} direction="row">
-          <Button variant="outlined" onClick={handleAddTask}
-                   sx={{
-                    margin: 'auto'
-                    }} 
-          >
-            Aggiungi
-          </Button>
+        <Stack spacing={2} direction="row" >
+        <Button  variant="outlined" onClick={handleAddTask}
+          sx={{
+            margin: '10px 30px 0px 0px',
+            width: '100%' // Aggiunto per avere la stessa larghezza del bottone nell'altro componente
+          }}
+         >
+         Aggiungi
+        </Button>
+
         </Stack>
       </Box>
-
       </Grid>
     </Grid>
   );
 }
+
+
+
