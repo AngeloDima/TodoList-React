@@ -13,10 +13,16 @@ export default function BasicTextFields(props) {
     setNewTask(event.target.value);
   };
 
+
+
   const handleAddTask = () => {
-    props.onAddTask(newTask);
-    setNewTask("");
+    if (newTask.trim() !== "") { 
+      props.onAddTask(newTask);
+      setNewTask("");
+    }
   };
+  
+  
 
   return (
     <Box
@@ -36,3 +42,6 @@ export default function BasicTextFields(props) {
     </Box>
   );
 }
+
+
+
