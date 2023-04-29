@@ -31,7 +31,7 @@ export default function ValidationTextFields(props) {
       <Box
         component="form"
         sx={{
-          width: '86%', // Imposta la larghezza del Box a 90% della larghezza del parent
+          width: '80%', // Imposta la larghezza del Box a 90% della larghezza del parent
           '& > :not(style)': { m: 1, width: '100%' }, // Imposta la larghezza dei figli a 100%
         }}
         noValidate
@@ -50,7 +50,7 @@ export default function ValidationTextFields(props) {
         <Button  variant="outlined" onClick={handleAddTask}
           sx={{
             margin: '10px 30px 0px 0px',
-            width: '100%' // Aggiunto per avere la stessa larghezza del bottone nell'altro componente
+            width: '95%' // Aggiunto per avere la stessa larghezza del bottone nell'altro componente
           }}
          >
          Aggiungi

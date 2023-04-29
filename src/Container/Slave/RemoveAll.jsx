@@ -13,8 +13,8 @@ const RemoveAll = ({ destroyData }) => {
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={11} md={10}>
-        <Box sx={{ width: '82%' }}>
-          <Stack sx={{ width: '100%' }}>
+        <Box sx={{ width: '80%' }}>
+          <Stack sx={{ width: '95%' }}>
           <Button id="abso"
               variant="contained"
               onClick={Bye}
