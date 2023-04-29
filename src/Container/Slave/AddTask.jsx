@@ -1,47 +1,51 @@
 import React, { useState } from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
-export default function BasicTextFields(props) {
-
-
+export default function ValidationTextFields(props) {
   const [newTask, setNewTask] = useState("");
+  const [error, setError] = useState(false);
 
   const handleTaskChange = (event) => {
     setNewTask(event.target.value);
+    setError(false);
   };
-
-
 
   const handleAddTask = () => {
-    if (newTask.trim() !== "") { 
+    if (newTask.trim() === "") {
+      setError(true);
+    } else {
       props.onAddTask(newTask);
       setNewTask("");
+      setError(false);
     }
   };
-  
-  
 
   return (
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        "& > :not(style)": { m: 1, width: "25ch" },
       }}
       noValidate
       autoComplete="off"
     >
-      
-      <TextField id="standard-basic" label="Nuova Task" variant="standard" value={newTask} onChange={handleTaskChange} />
-      
+      <TextField
+        id="standard-basic"
+        label="Nuova Task"
+        variant="standard"
+        value={newTask}
+        onChange={handleTaskChange}
+        error={error}
+        helperText={error ? "Non puoi lasciare il campo vuoto" : ""}
+      />
       <Stack spacing={2} direction="row">
-        <Button variant="outlined" onClick={handleAddTask}>Aggiungi</Button>
+        <Button variant="outlined" onClick={handleAddTask}>
+          Aggiungi
+        </Button>
       </Stack>
     </Box>
   );
 }
-
-
-
