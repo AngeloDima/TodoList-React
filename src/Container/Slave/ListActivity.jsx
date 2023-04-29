@@ -18,19 +18,24 @@ const Demo = styled('div')(({ theme }) => ({
 
 export default function InteractiveList(props) {
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+    <Box sx={{ width: '90%' }}>
+
+
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12} md={10}>
+
+
           <Demo>
             <List>
               {props.data.map((item) => (
 
+                // DELETE
                 <ListItem key={item.id} secondaryAction={
                   <IconButton edge="end" aria-label="delete">
                     <DeleteIcon onClick={() => props.onRemove(item.id)} />
                   </IconButton>
                 }>
-
+                  {/* --------------- */}
 
                   <CheckBox check={item.id} />
                   <ListItemText primary={item.name} />
