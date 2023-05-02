@@ -37,13 +37,13 @@ function App() {
 
   useEffect(() => {
     axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React', {
-      task: []
+      task: data
     }).then((response) => {
       console.log(response);
     }).catch((error) => {
       console.log(error);
     });
-  }, []);
+  }, [data]);
 
   return (
     <div>
