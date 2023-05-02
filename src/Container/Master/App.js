@@ -70,7 +70,11 @@ const removeAll = () => {
     .catch((error) => console.error(error));
 };
 
-console.log(data)
+
+useEffect(()=> {
+  console.log(data)
+
+})
 
   return (
     <div>
