@@ -15,7 +15,7 @@ function App() {
 
   const addTask = (newTask) => {
     const task = { id: uuidv4(), title: newTask, completed: false };
-    axios.post('https://jsonplaceholder.typicode.com/todos', task)
+    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React', task)
       .then(response => {
         setData([...data, response.data]);
       })
@@ -25,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
+    fetch('https://my-json-server.typicode.com/AngeloDima/TodoList-React')
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.log(error));
@@ -45,3 +45,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
