@@ -9,9 +9,15 @@ import Grid from "@mui/material/Grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckBox from "./CheckBox";
 
+
 const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
+
+
+
+
+
 
 export default function InteractiveList(props) {
   return (
@@ -20,7 +26,7 @@ export default function InteractiveList(props) {
         <Grid item xs={12} md={10}>
           <Demo>
             <List>
-              {props.data.map((item) => (
+              {props.data && props.data.map && props.data.map((item) => (
                 <ListItem
                   key={item.id}
                   secondaryAction={

@@ -3,79 +3,84 @@ import ListActivity from "../Slave/ListActivity";
 import AddTask from "../Slave/AddTask";
 import RemoveAll from "../Slave/RemoveAll";
 import { v4 as uuidv4 } from "uuid";
-import axios from 'axios';
 
 function App() {
   // ARRAY
   const [data, setData] = useState([]);
 
-  console.log(data)
+  // RIMUOVERE TASK
+const removeItem = (id) => {
+  const updatedData = data.filter((item) => item.id !== id);
+  setData(updatedData);
 
+  // DELETE request to remove data from API
+  fetch(`https://my-json-server.typicode.com/AngeloDima/TodoList-React/tasks/${id}`, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      console.log("DELETE response status:", response.status);
+    })
+    .catch((error) => console.error(error));
+};
 
-  const removeItem = (id) => {
-    axios
-      .delete(`https://my-json-server.typicode.com/AngeloDima/TodoList-React/task/${id}`)
-      .then(() => {
-        setData((prevData) => {
-          const updatedData = prevData.filter((item) => item.id !== id);
-          return updatedData;
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  
-  
+// CREARE TASK
+const addTask = (newTask) => {
+  const task = { id: uuidv4(), name: newTask, completed: false };
+  setData([...data, task]);
 
-  // CREARE TASK
-  const addTask = (newTask) => {
-    const task = { id: uuidv4(), name: newTask, completed: false };
-    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task', task)
-      .then(response => {
-        setData([...data, response.data]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  
+  // POST request to save data to API
+  fetch("https://my-json-server.typicode.com/AngeloDima/TodoList-React/task", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  })
+    .then((response) => {
+      console.log("POST response status:", response.status);
+    })
+    .catch((error) => console.error(error));
+};
 
-  // OTTENERE I DATI
-  useEffect(() => {
-    axios.get('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+// CARICARE I DATI DALLA API
+useEffect(() => {
+  fetch("https://my-json-server.typicode.com/AngeloDima/TodoList-React/task")
+    .then((response) => {
+      console.log("GET response status:", response.status);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("GET response data:", data);
+      setData(data);
+    })
+    .catch((error) => console.error(error));
+}, []);
 
-  // ELIMINARE TUTTI I DATI
-  const removeAll = () => {
-    axios.delete('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task')
-      .then(() => {
-        setData([]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+// ELIMINARE TUTTI I DATI
+const removeAll = () => {
+  setData([]);
+
+  // DELETE request to remove all data from API
+  fetch("https://my-json-server.typicode.com/AngeloDima/TodoList-React/task", {
+    method: "DELETE",
+  })
+    .then((response) => {
+      console.log("DELETE response status:", response.status);
+    })
+    .catch((error) => console.error(error));
+};
+
+console.log(data)
 
   return (
     <div>
       <ListActivity data={data} onRemove={removeItem} />
-      <AddTask onAddTask={addTask} />
+      <AddTask onAddTask={addTask} data={data} />
       <RemoveAll destroyData={removeAll} />
     </div>
   );
 }
 
 export default App;
-
-
-
-
 
 
