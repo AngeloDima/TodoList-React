@@ -3,47 +3,27 @@ import ListActivity from "../Slave/ListActivity";
 import AddTask from "../Slave/AddTask";
 import RemoveAll from "../Slave/RemoveAll";
 import { v4 as uuidv4 } from "uuid";
-import axios from 'axios';
 
 function App() {
+  // ARRAY
   const [data, setData] = useState([]);
 
+  // RIMUOVERE TASK
   const removeItem = (id) => {
     const updatedData = data.filter((item) => item.id !== id);
     setData(updatedData);
   };
 
+  // CREARE TASK
   const addTask = (newTask) => {
-    const task = { id: uuidv4(), title: newTask, completed: false };
-    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task', task)
-      .then(response => {
-        setData([...data, response.data]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const task = { id: uuidv4(), name: newTask, completed: false };
+    setData([...data, task]);
   };
 
-  useEffect(() => {
-    fetch('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => console.log(error));
-  }, []);
-
+  // ELIMINARE TUTTI I DATI
   const removeAll = () => {
     setData([]);
   };
-
-  useEffect(() => {
-    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React', {
-      task: data
-    }).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }, [data]);
 
   return (
     <div>
@@ -55,3 +35,6 @@ function App() {
 }
 
 export default App;
+
+
+
