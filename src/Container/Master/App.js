@@ -12,17 +12,21 @@ function App() {
   console.log(data)
 
 
-  // RIMUOVERE TASK
   const removeItem = (id) => {
-    axios.delete(`https://my-json-server.typicode.com/AngeloDima/TodoList-React/task/${id}`)
+    axios
+      .delete(`https://my-json-server.typicode.com/AngeloDima/TodoList-React/task/${id}`)
       .then(() => {
-        const updatedData = data.filter((item) => item.id !== id);
-        setData(updatedData);
+        setData((prevData) => {
+          const updatedData = prevData.filter((item) => item.id !== id);
+          return updatedData;
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
+  
+  
 
   // CREARE TASK
   const addTask = (newTask) => {
@@ -69,6 +73,9 @@ function App() {
 }
 
 export default App;
+
+
+
 
 
 
