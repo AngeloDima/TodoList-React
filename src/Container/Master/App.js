@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from 'axios';
 
 function App() {
-  const [data, setData] = useState(getLocalData());
+  const [data, setData] = useState([]);
 
   const removeItem = (id) => {
     const updatedData = data.filter((item) => item.id !== id);
@@ -19,33 +19,22 @@ function App() {
   };
 
   useEffect(() => {
-    saveData(data);
-  }, [data]);
+    fetchData();
+  }, []);
 
-  function saveData(data) {
-    axios.post('https://jsonplaceholder.typicode.com/posts', data)
+  function fetchData() {
+    axios.get('https://jsonplaceholder.typicode.com/todos')
       .then(response => {
-        console.log(response.data);
+        setData(response.data);
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  function getLocalData() {
-    const data = localStorage.getItem("data");
-    return data ? JSON.parse(data) : [];
-  }
-
   const removeAll = () => {
     setData([]);
   };
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/AngeloDima/TodoList-React')
-      .then(response => response.json())
-      .then(json => console.log(json))
-  });
 
   return (
     <div>
