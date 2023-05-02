@@ -14,17 +14,22 @@ function App() {
   };
 
   const addTask = (newTask) => {
-    const task = { id: uuidv4(), name: newTask, completed: false };
-    setData([...data, task]);
+    const task = { id: uuidv4(), title: newTask, completed: false };
+    axios.post('https://jsonplaceholder.typicode.com/todos', task)
+      .then(response => {
+        setData([...data, response.data]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-
-
-  fetch('https://my-json-server.typicode.com/AngeloDima/TodoList-React')
-  .then(response => response.json())
-  .then(json => console.log(json))
-  .catch(error => console.log(error));
-
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(json => setData(json))
+      .catch(error => console.log(error));
+  }, []);
 
   const removeAll = () => {
     setData([]);
@@ -33,7 +38,7 @@ function App() {
   return (
     <div>
       <ListActivity data={data} onRemove={removeItem} />
-      <AddTask onAddTask={addTask} data={data} />
+      <AddTask onAddTask={addTask} />
       <RemoveAll destroyData={removeAll} />
     </div>
   );
