@@ -15,7 +15,7 @@ function App() {
 
   const addTask = (newTask) => {
     const task = { id: uuidv4(), title: newTask, completed: false };
-    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React', task)
+    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task', task)
       .then(response => {
         setData([...data, response.data]);
       })
@@ -25,7 +25,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('https://my-json-server.typicode.com/AngeloDima/TodoList-React')
+    fetch('https://my-json-server.typicode.com/AngeloDima/TodoList-React/task')
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.log(error));
@@ -34,6 +34,16 @@ function App() {
   const removeAll = () => {
     setData([]);
   };
+
+  useEffect(() => {
+    axios.post('https://my-json-server.typicode.com/AngeloDima/TodoList-React', {
+      task: []
+    }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
 
   return (
     <div>
@@ -45,7 +55,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
