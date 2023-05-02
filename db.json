@@ -1,6 +1,6 @@
 {
   "task": [
-    { "name": "ciao"}
+    {"id": 1, "name": "ciao"}
   ]
 }
 
