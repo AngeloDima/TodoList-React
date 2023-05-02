@@ -18,19 +18,13 @@ function App() {
     setData([...data, task]);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  function fetchData() {
-    axios.get('https://jsonplaceholder.typicode.com/todos')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+
+  fetch('https://my-json-server.typicode.com/AngeloDima/TodoList-React')
+  .then(response => response.json())
+  .then(json => console.log(json))
+  .catch(error => console.log(error));
+
 
   const removeAll = () => {
     setData([]);
