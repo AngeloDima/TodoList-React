@@ -15,13 +15,9 @@ const Demo = styled("div")(({ theme }) => ({
 }));
 
 
-
-
-
-
 export default function InteractiveList(props) {
 
-  console.log()
+  console.log(props)
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -39,6 +35,7 @@ export default function InteractiveList(props) {
                   }
                 >
                   <CheckBox check={item.id} />
+                  
                   <ListItemText primary={item.name} />
                 </ListItem>
               ))}

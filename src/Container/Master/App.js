@@ -4,6 +4,9 @@ import AddTask from "../Slave/AddTask";
 import RemoveAll from "../Slave/RemoveAll";
 import { v4 as uuidv4 } from "uuid";
 
+
+
+
 function App() {
   // ARRAY
   const [data, setData] = useState([]);
@@ -85,5 +88,3 @@ useEffect(() => {
 }
 
 export default App;
-
-
