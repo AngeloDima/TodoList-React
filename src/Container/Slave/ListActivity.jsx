@@ -20,6 +20,9 @@ const Demo = styled("div")(({ theme }) => ({
 
 
 export default function InteractiveList(props) {
+
+  console.log()
+
   return (
     <Box sx={{ width: "100%" }}>
       <Grid container spacing={2} justifyContent="center">
@@ -46,3 +49,6 @@ export default function InteractiveList(props) {
     </Box>
   );
 }
+
+
+

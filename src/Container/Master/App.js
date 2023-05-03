@@ -14,7 +14,7 @@ const removeItem = (id) => {
   setData(updatedData);
 
   // DELETE request to remove data from API
-  fetch(`https://my-json-server.typicode.com/AngeloDima/TodoList-React/tasks/${id}`, {
+  fetch(`https://my-json-server.typicode.com/AngeloDima/TodoList-React/task/${id}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -71,9 +71,8 @@ const removeAll = () => {
 };
 
 
-useEffect(()=> {
+useEffect(() => {
   console.log(data)
-
 })
 
   return (
