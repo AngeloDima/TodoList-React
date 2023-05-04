@@ -44,7 +44,9 @@ export default function InteractiveList(props) {
         </Grid>
       </Grid>
     </Box>
+    
   );
+
 }
 
 
