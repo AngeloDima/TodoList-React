@@ -34,7 +34,7 @@ export default function InteractiveList(props) {
                     </IconButton>
                   }
                 >
-                  <CheckBox check={item.id} />
+                  <CheckBox check={item.id} completed={false}/>
                   
                   <ListItemText primary={item.name} />
                 </ListItem>
